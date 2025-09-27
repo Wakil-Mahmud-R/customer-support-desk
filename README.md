@@ -1,16 +1,14 @@
-# React + Vite
+1. JSX and why it’s used
+JSX is basically a way to write HTML-like code inside JavaScript. It makes building user interfaces in React feel much more natural because instead of writing a bunch of React.createElement calls, you can just write something that looks like HTML, and React takes care of turning it into the right JavaScript objects behind the scenes. The main reason it’s used is readability and convenience—it’s easier to visualize the UI structure when you’re writing code that looks like the actual markup.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2. Difference between State and Props
+State and props are both ways to handle data in React, but they serve different purposes. State is internal to a component—it’s like the component’s own memory, something it can keep track of and change over time, like whether a modal is open or the current value in a text input. Props, on the other hand, are external. They’re passed down from a parent component to a child, and the child can use them but not change them. So you can think of state as “what I can control myself” and props as “what someone else gave me to use.”
 
-Currently, two official plugins are available:
+3. useState hook and how it works
+The useState hook is React’s way of letting function components keep track of state. When you use it, you declare a piece of state and a function to update it. For example, const [count, setCount] = useState(0) means count starts at zero, and whenever you call setCount, React updates the value and re-renders the component with the new state. It’s a simple pattern but very powerful because it makes components dynamic and interactive.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+4. Sharing state between components
+To share state between components, the usual approach is to lift that state up to their nearest common parent. That parent holds the state, and then passes it down to its children as props. This way, multiple components can stay in sync. If the app gets bigger and passing props around becomes messy, React also gives us tools like the Context API to share state more directly. And for even larger apps, external state management libraries like Redux or Zustand are often used.
 
-## React Compiler
-
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+5. Event handling in React
+Event handling in React looks a lot like plain JavaScript, but with a couple of differences. Instead of lowercase attributes like onclick, you use camelCase like onClick, and instead of writing a string of code, you pass in a function. For example, <button onClick={handleClick}>Click</button>. Under the hood, React wraps these in something called synthetic events, which makes event behavior consistent across different browsers. The main idea is still the same: you attach a handler to an element, and React will call it when that event happens.
